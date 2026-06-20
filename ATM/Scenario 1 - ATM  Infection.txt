@@ -1,0 +1,13 @@
+In the Intelligence Graph in Figure 8, terminal situations are S5 and S32, each characterised by the absence of outgoing action transitions. A local cycle is present at S2 through the self-transition a22. Apart from this local cycle, the remaining situations form a directed acyclic progression from S0 towards the terminal outcomes.
+
+Figure 9 instantiates the three-level analytical framework through the ATM infection scenario. The scenario unfolds as a behavioural execution path ρ beginning in situation S0 (ATM OS Not Updated), where threat T1 (ATM Infected) is present and the ATM operating system is attached as an item, with conditions qualifying its patch state fixing the initial factual configuration. Infection events E2 (ATM Physical Infection) and E3 (ATM Remote Infection) occur in S0 and satisfy the antecedents of distinct rules in Rdyn, with actions a01 and a02 leading to alternative compromise situations S1 and S2. Actions a13 and a23 then converge on S3 (ATM Overtaken By Hacker), where card insertion E6 and system remediation E5 are both admissible.
+
+The execution bifurcates: corrective action a34 returns the system to terminal state S4, while deceptive action a35 advances to S5 (Card Inserted). Events E7, E8, and E9 then apply actions a56, a67, and a78, progressing through credential theft and attacker connection to S8. From S8, analytic intervention via E10 and action a89 leads to terminal state S9 (Transaction Cancelled), corresponding to the derived SWRL rule:
+
+Situation(S8) ∧ Event(E10) ∧ occur_in(E10, S8) → Actiona89(S8, S9)
+
+Transfer execution via E11 leads to S10 (Payment To Criminals), which remains non-terminal through the self-referential rule:
+
+Situation(S10) ∧ Event(E11) ∧ occur_in(E11, S10) → Actiona10(S10, S10)
+
+All situations are reachable from S0, terminal and cyclic behaviour are identified mechanically from the OWL action relations encoded in the Intelligence Graph, and each action is associated with a rule in Rdyn that fires in at least one admissible context, establishing the behavioural specification as complete and non-redundant.
